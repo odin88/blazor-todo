@@ -1,0 +1,41 @@
+﻿@page "/task"
+
+<h1>@title</h1>
+<form action="/" method="post">
+    <input type="text" name="task" value="" bind="@task" />
+
+    <input type="submit" name="name" value="Add to todo list"
+           onclick="@addTask" class="btn btn-primary"/>
+
+    <input type="button" name="clear" value="Remove all todo list" 
+           onclick="@clearAll" class="btn btn-danger"/>
+</form>
+<ol>
+    @foreach (var todo in todolists)
+    {
+        <li>@todo</li>
+    }
+
+</ol>
+
+@functions {
+
+    string title = "Hassan To Do List";
+    public string task { get; set; }
+
+    List<string> todolists = new List<string>();
+
+    public void addTask()
+    {
+
+        todolists.Add(task);
+        task = "";
+    }
+
+    public void clearAll()
+    {
+        todolists.Clear();
+    }
+
+
+}
